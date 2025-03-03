@@ -20,6 +20,12 @@ public class SingleLinkedList<T> implements Iterable<T> {
         return _size;
     }
 
+    public void clear(){
+        _head.next = null;
+        _last = _head;
+        _size = 0;
+    }
+
     public void addFirst(T val) {
         Node p = new Node(val, _head.next);
         _head.next = p;
