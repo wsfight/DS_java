@@ -5,44 +5,45 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 
-
 public class test {
     @Test
-    @DisplayName("循环")
-    public void test1(){
+    @DisplayName("loop!")
+    public void test1() {
         singleLinkedList<Integer> list = new singleLinkedList<Integer>();
-        list.addFisrt(1);
-        list.addFisrt(2);
-        list.addFisrt(3);
-        list.loop(value->{
+        list.addFirst(1);
+        list.addFirst(2);
+        list.addFirst(3);
+        list.loop(value -> {
             // 简单while循环
-            System.out.println(value)   ;
+            System.out.println(value);
         });        // 3 2 1
-        list.loop2(value->{
-                // 简单for循环
+        list.loop2(value -> {
+            // 简单for循环
             System.out.println(value);
         });
-        for(int v:list){
+        for (int v : list) {
             // 增强for循环
             System.out.println(v);
         }
     }
 
     @Test
-    public void test02(){
+    @DisplayName("addLast!")
+    public void test02() {
         singleLinkedList<Integer> l = new singleLinkedList<Integer>();
         l.addLast(1);
         l.addLast(2);
         l.addLast(3);
         l.addLast(4);
         l.addLast(5);
-        Assertions.assertIterableEquals(List.of(1,2,3,4,5),l);
-        Assertions.assertEquals(4,l.get(3));
+        Assertions.assertIterableEquals(List.of(1, 2, 3, 4, 5), l);
+        Assertions.assertEquals(4, l.get(3));
 
     }
+
     @Test
-    @DisplayName("Remove")
-    public void test03(){
+    @DisplayName("remove!")
+    public void test03() {
         singleLinkedList<Integer> l = new singleLinkedList<>();
         l.addLast(1);
         l.addLast(2);
@@ -51,8 +52,21 @@ public class test {
         l.addLast(5);
         l.remove(0);
         l.remove(3);
-        Assertions.assertIterableEquals(List.of(2,3,4),l);
+        Assertions.assertIterableEquals(List.of(2, 3, 4), l);
     }
 
+    @Test
+    @DisplayName("insert!")
+    public void test04() {
+        singleLinkedList<Integer> l = new singleLinkedList<>();
+        l.addLast(1);
+        l.addLast(2);
+        l.addLast(3);
+        l.addLast(4);
+        l.addFirst(5);  // 5 1 2 3 4
+        l.insert(1,10); // 5 10 1 2 3 4
+        Assertions.assertIterableEquals(List.of(5,10,1,2,3,4),l);
+
+    }
 
 }
