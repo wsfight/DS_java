@@ -1,13 +1,23 @@
 import java.util.Iterator;
 import java.util.function.Consumer;
 
-public class singleLinkedList<T> implements Iterable<T> {
+public class SingleLinkedList<T> implements Iterable<T> {
     private final Node _head;         // 头结点
     private Node _last;
+    private int _size;
 
-    public singleLinkedList() {
+    public SingleLinkedList() {
         _head = new Node();
         _last = _head;
+        _size = 0;
+    }
+
+    public boolean isEmpty(){
+        return _size == 0;
+    }
+
+    public int size(){
+        return _size;
     }
 
     public void addFirst(T val) {
@@ -16,6 +26,7 @@ public class singleLinkedList<T> implements Iterable<T> {
         if (p.next == null) {
             _last = p;
         }
+        _size++;
     }
 
     public void addLast(T val) {
@@ -26,6 +37,7 @@ public class singleLinkedList<T> implements Iterable<T> {
             _last.next = p;
         }
         _last = p;
+        _size++;
     }
 
     public Node findIndex(int index) {
@@ -64,6 +76,7 @@ public class singleLinkedList<T> implements Iterable<T> {
         if(ret.next == null){
             _last = ret;
         }
+        _size++;
     }
 
     public T remove(int index) {
@@ -79,6 +92,7 @@ public class singleLinkedList<T> implements Iterable<T> {
         if(ret == _last){
             _last = prev;
         }
+        _size--;
         return ret.value;
     }
 
@@ -97,10 +111,19 @@ public class singleLinkedList<T> implements Iterable<T> {
         }
     }
 
-    @Override
-    public Iterator<T> iterator() {
-        return new MyIterator();
+    private void recursion(Node cur,Consumer<T> consumer){
+        if(cur == null){
+            return;
+        }
+        consumer.accept(cur.value);
+        recursion(cur.next,consumer);
     }
+    public void loop3(Consumer<T> consumer){
+        recursion(_head.next,consumer);
+    }
+
+
+
 
     private class Node {
         // 与外部类有类型关系
@@ -122,6 +145,7 @@ public class singleLinkedList<T> implements Iterable<T> {
         }
     }
 
+
     private class MyIterator implements Iterator<T> {
         Node p = _head.next;
 
@@ -136,5 +160,10 @@ public class singleLinkedList<T> implements Iterable<T> {
             p = p.next;
             return ele;
         }
+
+    }
+    @Override
+    public Iterator<T> iterator() {
+        return new MyIterator();
     }
 }

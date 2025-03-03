@@ -9,7 +9,7 @@ public class test {
     @Test
     @DisplayName("loop!")
     public void test1() {
-        singleLinkedList<Integer> list = new singleLinkedList<Integer>();
+        SingleLinkedList<Integer> list = new SingleLinkedList<Integer>();
         list.addFirst(1);
         list.addFirst(2);
         list.addFirst(3);
@@ -30,7 +30,7 @@ public class test {
     @Test
     @DisplayName("addLast!")
     public void test02() {
-        singleLinkedList<Integer> l = new singleLinkedList<Integer>();
+        SingleLinkedList<Integer> l = new SingleLinkedList<Integer>();
         l.addLast(1);
         l.addLast(2);
         l.addLast(3);
@@ -44,7 +44,7 @@ public class test {
     @Test
     @DisplayName("remove!")
     public void test03() {
-        singleLinkedList<Integer> l = new singleLinkedList<>();
+        SingleLinkedList<Integer> l = new SingleLinkedList<>();
         l.addLast(1);
         l.addLast(2);
         l.addLast(3);
@@ -58,7 +58,7 @@ public class test {
     @Test
     @DisplayName("insert!")
     public void test04() {
-        singleLinkedList<Integer> l = new singleLinkedList<>();
+        SingleLinkedList<Integer> l = new SingleLinkedList<>();
         l.addLast(1);
         l.addLast(2);
         l.addLast(3);
@@ -69,4 +69,18 @@ public class test {
 
     }
 
+    @Test
+    @DisplayName("recursion!")
+    public void test05(){
+        SingleLinkedList<Integer> l = new SingleLinkedList<>();
+        l.addLast(1);
+        l.addLast(2);
+        l.addLast(3);
+        l.addLast(4);
+        l.addFirst(5);  // 5 1 2 3 4
+        l.insert(1,10); // 5 10 1 2 3 4
+        l.loop3(value->{
+            System.out.println(value);
+        });
+    }
 }
