@@ -12,15 +12,15 @@ public class SingleLinkedList<T> implements Iterable<T> {
         _size = 0;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return _size == 0;
     }
 
-    public int size(){
+    public int size() {
         return _size;
     }
 
-    public void clear(){
+    public void clear() {
         _head.next = null;
         _last = _head;
         _size = 0;
@@ -72,30 +72,30 @@ public class SingleLinkedList<T> implements Iterable<T> {
     public void insert(int index, T value) {
         // 1.首先找到index-1结点
         // 2.连接
-        if(index < 0){
+        if (index < 0) {
             throw new IllegalArgumentException("索引不能小于0!");
         }
         Node p = findIndex(index - 1);
         Node ret = new Node(value, p.next);
         p.next = ret;
         // 3.更新_last;
-        if(ret.next == null){
+        if (ret.next == null) {
             _last = ret;
         }
         _size++;
     }
 
     public T remove(int index) {
-        if(index < 0){
+        if (index < 0) {
             throw new IllegalArgumentException("索引不能小于0!");
         }
         Node prev = findIndex(index - 1);
-        if(prev.next == null){
+        if (prev.next == null) {
             throw new IllegalArgumentException("索引越界!");
         }
         Node ret = prev.next;
         prev.next = prev.next.next;
-        if(ret == _last){
+        if (ret == _last) {
             _last = prev;
         }
         _size--;
@@ -117,19 +117,22 @@ public class SingleLinkedList<T> implements Iterable<T> {
         }
     }
 
-    private void recursion(Node cur,Consumer<T> consumer){
-        if(cur == null){
+    private void recursion(Node cur, Consumer<T> consumer) {
+        if (cur == null) {
             return;
         }
         consumer.accept(cur.value);
-        recursion(cur.next,consumer);
-    }
-    public void loop3(Consumer<T> consumer){
-        recursion(_head.next,consumer);
+        recursion(cur.next, consumer);
     }
 
+    public void loop3(Consumer<T> consumer) {
+        recursion(_head.next, consumer);
+    }
 
-
+    @Override
+    public Iterator<T> iterator() {
+        return new MyIterator();
+    }
 
     private class Node {
         // 与外部类有类型关系
@@ -151,7 +154,6 @@ public class SingleLinkedList<T> implements Iterable<T> {
         }
     }
 
-
     private class MyIterator implements Iterator<T> {
         Node p = _head.next;
 
@@ -167,9 +169,5 @@ public class SingleLinkedList<T> implements Iterable<T> {
             return ele;
         }
 
-    }
-    @Override
-    public Iterator<T> iterator() {
-        return new MyIterator();
     }
 }
