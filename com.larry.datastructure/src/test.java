@@ -16,10 +16,10 @@ public class test {
         list.addFisrt(3);
         list.loop(value->{
             // 简单while循环
-            System.out.println(value);
+            System.out.println(value)   ;
         });        // 3 2 1
         list.loop2(value->{
-            // 简单for循环
+                // 简单for循环
             System.out.println(value);
         });
         for(int v:list){
@@ -39,6 +39,19 @@ public class test {
         Assertions.assertIterableEquals(List.of(1,2,3,4,5),l);
         Assertions.assertEquals(4,l.get(3));
 
+    }
+    @Test
+    @DisplayName("Remove")
+    public void test03(){
+        singleLinkedList<Integer> l = new singleLinkedList<>();
+        l.addLast(1);
+        l.addLast(2);
+        l.addLast(3);
+        l.addLast(4);
+        l.addLast(5);
+        l.remove(0);
+        l.remove(3);
+        Assertions.assertIterableEquals(List.of(2,3,4),l);
     }
 
 

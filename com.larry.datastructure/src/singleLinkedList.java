@@ -43,6 +43,9 @@ public class singleLinkedList<T> implements Iterable<T>{
         _last = p;
     }
     public Node findIndex(int index){
+        if(index == -1){
+            return _head;
+        }
         int i = 0;
         for (Node p = _head.next;p!=null;p=p.next,i++) {
             if(i == index){
@@ -58,6 +61,14 @@ public class singleLinkedList<T> implements Iterable<T>{
         }
         return node.value;
     }
+
+    public T remove(int index){
+        Node p = findIndex(index - 1);
+        Node ret = p.next;
+        p.next = p.next.next;
+        return ret.value;
+    }
+
     public void loop(Consumer<T>consumer){
         Node p = _head.next;
         while(p != null){
