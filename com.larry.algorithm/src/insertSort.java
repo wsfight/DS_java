@@ -3,14 +3,15 @@ public class insertSort {
         int low = nums.length - 1;
         for (int i = 1; i <= low; i++) {
             int temp = nums[i];
-            for (int j = i - 1; j >= 0; j--) {
+            int j = i - 1;
+            for (; j >= 0; j--) {
                 if (nums[j] > temp) {
                     nums[j + 1] = nums[j]; // 往后移动
                 } else { // 小于temp时
-                    nums[j + 1] = temp;
                     break;
                 }
             }
+            nums[j + 1] = temp;         // 保证了0号索引位置
         }
     }
 
@@ -26,15 +27,16 @@ public class insertSort {
         }
         // 插入操作
         int temp = nums[low];
-        for (int i = low - 1; i >= 0; i--) {
+        int i = low - 1;
+        for (; i >= 0; i--) {
             if (nums[i] > temp) {
                 nums[i + 1] = nums[i];
             } else {
                 // 此时已经比小
-                nums[i + 1] = temp;
                 break;
             }
         }
+        nums[i + 1] = temp;         // 保证了插入0号索引位置
         sort(nums, low + 1);
     }
 }
