@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/FromScratchJava.iml" filepath="$PROJECT_DIR$/FromScratchJava.iml" />
+      <module fileurl="file://$PROJECT_DIR$/com.larry.algorithm/com.larry.algorithm.iml" filepath="$PROJECT_DIR$/com.larry.algorithm/com.larry.algorithm.iml" />
       <module fileurl="file://$PROJECT_DIR$/com.larry.datastructure/com.larry.datastructure.iml" filepath="$PROJECT_DIR$/com.larry.datastructure/com.larry.datastructure.iml" />
       <module fileurl="file://$PROJECT_DIR$/com.larry.recursion/com.larry.recursion.iml" filepath="$PROJECT_DIR$/com.larry.recursion/com.larry.recursion.iml" />
     </modules>
