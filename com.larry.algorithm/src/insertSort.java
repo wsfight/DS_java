@@ -2,16 +2,18 @@ public class insertSort {
     public static void insertSort(int[] nums) {
         int low = nums.length - 1;
         for (int i = 1; i <= low; i++) {
-            int temp = nums[i];
+            // i表明需要插入的索引
+            int temp = nums[i]; // 保存了需要插入的索引
             int j = i - 1;
             for (; j >= 0; j--) {
+                // j表示的是比较的索引
                 if (nums[j] > temp) {
                     nums[j + 1] = nums[j]; // 往后移动
                 } else { // 小于temp时
                     break;
                 }
             }
-            nums[j + 1] = temp;         // 保证了0号索引位置
+            nums[j + 1] = temp;         // 保证了0号索引位置，有可能不是break退出循环，也有可能是循环结束至-1退出循环；
         }
     }
 
