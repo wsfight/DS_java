@@ -8,13 +8,12 @@ public class testLinkedListQueue {
     @Test
     @DisplayName("测试尾插函数offer")
     public void test01(){
-        LinkedListQueue<Integer> l = new LinkedListQueue<>();
+        LinkedListQueue<Integer> l = new LinkedListQueue<>(3);
         l.offer(1);
         l.offer(2);
         l.offer(3);
-        l.offer(4);
-        l.offer(5);         // 1,2,3,4,5
-        Assertions.assertIterableEquals(List.of(1,2,3,4,5),l);
+        Assertions.assertFalse(l.offer(4));
+        Assertions.assertFalse(l.offer(5));
     }
     @Test
     @DisplayName("测试poll函数")
@@ -30,13 +29,15 @@ public class testLinkedListQueue {
         l.poll();
         l.poll();
         l.poll();
-        Assertions.assertIterableEquals(List.of(),l);
+        l.offer(10);
+        Assertions.assertIterableEquals(List.of(10),l);
     }
 
     @Test
     @DisplayName("测试peek函数")
     public void test03(){
         LinkedListQueue<Integer> l = new LinkedListQueue<>();
+        Assertions.assertNull(l.peek());
         l.offer(1);
         l.offer(2);
         l.offer(3);

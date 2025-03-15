@@ -8,68 +8,93 @@ public class LinkedListQueue<E> implements Iterable<E> {
      * */
 
     /**
-     * 这个链表是单向循环链表
-     * attri:_head头结点,dummy结点; _tail尾结点
+     * 几个属性
      */
     private Node<E> _head = new Node<>(null, null);
     private Node<E> _tail = _head;
+    private int _size;  // 结点数
+    private int _capacity = Integer.MAX_VALUE;
 
 
     /**
-     * 构造函数:
-     * 连接了头和尾
+     * 简单的构造函数
      */
     public LinkedListQueue() {
         _tail._next = _head;
+        _size = 0;
     }
 
     /**
-     * 向队尾插入值
-     * params:插入值
-     * returns:插入返回true,失败返回false
+     * @param capacity:指定容量大小,不指定则默认为最大值
+     */
+    public LinkedListQueue(int capacity){
+        _tail._next = _head;
+        _size = 0;
+        _capacity = capacity;
+    }
+
+    /**
+     *
+     * @param value:需要插入的值
+     * @return 插入失败返回false,插入成功返回true
      */
     boolean offer(E value) {
-        // 什么情况下插入失败?
+        if(isFull()){
+            // 满了则插入失败
+            return false;
+        }
         Node p = new Node<>(value, _tail._next);
         _tail._next = p;
         _tail = p;
+        ++_size;
         return true;
     }
 
     /**
      * 从队头获取值,并移除
-     * returns:如果队列为空则返回队头值,否则返回null
+     * @return:如果队列为空则返回null,否则返回队头值,并且移除队头
      */
     E poll() {
-        Node p = _head._next;
-        if (p == _head) {
+        if (isEmpty()) {
             return null;
-        } else if (p._next == _head) {
-            // 那么tail呢?
+        }
+        // 接下来非空
+        Node p = _head._next;
+        if (p._next == _head) {
+            // 只有一个结点
             _tail = _head;
         }
         _head._next = p._next;
+        --_size;
+
         return (E) p._value;
     }
 
     /**
      * 从队头获取值,不移除
-     * returns:如果队列为空,返回null,非空则返回队头值
+     * @return:如果队列为空,返回null,非空则返回队头值
      */
     E peek() {
+        if (isEmpty()) {
+            return null;
+        }
         return (E) _head._next._value;
     }
 
     /**
      * 判断队列是否为空
-     * returns:如果为空返回true,非空则false
+     * @return 如果为空返回true,非空则false
      */
     boolean isEmpty() {
-        if (_head._next == _head) {
-            return true;
-        } else {
-            return false;
-        }
+        return _head == _tail;
+    }
+
+    /**
+     * 检查队列是否已满
+     * @return 满返回true,否则返回false
+     */
+    boolean isFull(){
+        return _size == _capacity;
     }
 
     @Override
@@ -94,7 +119,7 @@ public class LinkedListQueue<E> implements Iterable<E> {
 
     private static class Node<E> {
         /**
-         * params: _value是结点存储的值,_next是下一个结点
+         * @param _value:是结点存储的值,_next是下一个结点
          */
         E _value;
         Node<E> _next;
