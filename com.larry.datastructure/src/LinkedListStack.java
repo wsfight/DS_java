@@ -60,7 +60,7 @@ public class LinkedListStack<E> implements Stack<E>, Iterable {
 
             @Override
             public boolean hasNext() {
-                return p != _head;
+                return p != null;
             }
 
             @Override
