@@ -8,7 +8,7 @@ public class testcircularArrayQueue {
     @Test
     @DisplayName("offer")
     public void test01() {
-        circularArrayQueue<Integer> l = new circularArrayQueue<>();
+        CircularArrayQueue<Integer> l = new CircularArrayQueue<>();
         l.offer(1);
         l.offer(2);
         l.offer(3);
@@ -18,7 +18,7 @@ public class testcircularArrayQueue {
     @Test
     @DisplayName("poll")
     public void test02() {
-        circularArrayQueue<Integer> l = new circularArrayQueue<>();
+        CircularArrayQueue<Integer> l = new CircularArrayQueue<>();
         l.offer(1);
         l.offer(2);
         l.offer(3);

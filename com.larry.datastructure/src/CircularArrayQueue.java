@@ -1,6 +1,6 @@
 import java.util.Iterator;
 
-public class circularArrayQueue<E> implements Iterable {
+public class CircularArrayQueue<E> implements Iterable {
     /**
      * 环形数组队列:
      * 先进先出
@@ -10,6 +10,11 @@ public class circularArrayQueue<E> implements Iterable {
      * 下标计算: 数组长度n 当前索引位置k 向前走i步,则对应索引为(k + i) % n  长度5,索引2,走5步  对应索引(2+5)%5 = 2
      * 判断满: 设置头指针与尾指针  一般预留一个位置: (_tail + 1) % n = _head
      * 判断空: _tail = _head
+     *
+     * 求模运算:
+     * - 如果除数是2的n次方
+     * - 那么被除数的后n位即为余数(模)
+     * - 求被除数的后n位方法: 与2^n - 1按位与
      * */
 
     /**
@@ -23,6 +28,7 @@ public class circularArrayQueue<E> implements Iterable {
     private int _size;
     private int _capacity = 10;
 
+
     /**
      * 简单的构造函数
      */ {
@@ -31,14 +37,14 @@ public class circularArrayQueue<E> implements Iterable {
         _tail = 0;
     }
 
-    public circularArrayQueue() {
+    public CircularArrayQueue() {
         array = (E[]) new Object[_capacity + 1];        // 预留了一个位置用来判满
     }
 
     /**
      * @param capacity:指定容量大小,不指定则默认为10
      */
-    public circularArrayQueue(int capacity) {
+    public CircularArrayQueue(int capacity) {
         array = (E[]) new Object[capacity + 1];
         _capacity = capacity;
     }
