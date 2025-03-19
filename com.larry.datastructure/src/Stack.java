@@ -11,6 +11,8 @@ public interface Stack<E> {
      */
     boolean push(E value);
 
+
+
     /**
      * 从栈顶弹出元素
      * @return 栈非空返回栈顶元素,栈为空则返回null
