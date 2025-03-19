@@ -6,12 +6,11 @@ import java.util.Iterator;
  */
 public class LinkedListDeque<E> implements Deque<E>,Iterable{
     // 1.头结点,尾结点
-    Node _head;
-    Node _tail;
+    Node<E> _head;
+    Node<E> _tail;
     // 2.容量
     int _capacity = 10;
     int _size = 0;
-
     LinkedListDeque(){
         _head = new Node<>(null,null,null);
         _tail = _head;
@@ -123,9 +122,9 @@ public class LinkedListDeque<E> implements Deque<E>,Iterable{
 
     public class Node<E>{
         // 双向结点
-        Node _prev;
+        Node<E> _prev;
         E _val;
-        Node _next;
+        Node<E> _next;
         Node(E value,Node prev,Node next){
             _val = value;
             _prev = prev;
